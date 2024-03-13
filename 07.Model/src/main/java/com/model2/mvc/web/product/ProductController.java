@@ -29,6 +29,7 @@ import com.model2.mvc.service.user.UserService;
 
 
 @Controller
+@RequestMapping("/product/*")
 public class ProductController {
 	
 	@	Autowired
@@ -48,18 +49,18 @@ public class ProductController {
    int pageSize;
 
    
-   @RequestMapping("/addProductView.do")
-   public String addProductView() throws Exception{
+   @RequestMapping(value = "addProduct", method = RequestMethod.GET)
+   public String addProduct() throws Exception{
 	   
-	   System.out.println("/addProductView.do");
+	   System.out.println("/addProductView");
 	   
 	   return "forward:/product/addProductView.jsp";
    }
    
-   @RequestMapping("/addProduct.do")
+   @RequestMapping(value = "addProduct", method = RequestMethod.POST)
    public String addProduct(@ModelAttribute("product") Product product, Model model, ServletRequest request) throws Exception {
 	   
-	   System.out.println("/addProduct.do");
+	   System.out.println("/addProduct");
 	   
 	   String[] date = request.getParameter("manuDate").split("-");
 	   
@@ -71,14 +72,14 @@ public class ProductController {
 	   return "forward:/product/addProduct.jsp";
    }
    
-   @RequestMapping("/getProduct.do")
+   @RequestMapping(value = "getProduct", method = RequestMethod.GET)
    public String getProduct(@RequestParam("prodNo") int prodNo, 
-	   									@RequestParam(value = "menu", required = false) String menu,
+	   									@RequestParam("menu") String menu,
 		   										Model model, ServletRequest request,
 		   										HttpServletResponse response
 		   										) throws Exception {
 	   
-	   System.out.println("/getProduct.do");
+	   System.out.println("/getProduct");
 	   
 	   Product product = productService.getProduct(prodNo);
 	  
@@ -114,10 +115,10 @@ public class ProductController {
    }
 
 
-   @RequestMapping("/updateProductView.do")
+   @RequestMapping(value = "updateProduct", method = RequestMethod.GET)
    public String updateProductView(@RequestParam("prodNo") int prodNo, Model model, @RequestParam("menu") String menu) throws Exception{
 	   
-	   System.out.println("/updateProductView.do");
+	   System.out.println("/updateProductView");
 	   
 	   Product product = productService.getProduct(prodNo);
 	   
@@ -128,7 +129,7 @@ public class ProductController {
 	   
    }
    
-   @RequestMapping("/updateProduct.do")
+   @RequestMapping(value = "updateProduct", method = RequestMethod.POST)
    public String updateProduct(@ModelAttribute("product") Product product , Model model, ServletRequest request,
 		  /* HttpSession session*/ @RequestParam("menu") String menu
 		   ) throws Exception{
@@ -156,7 +157,7 @@ public class ProductController {
 	   return "forward:/product/getProduct.jsp";
    }
    
-   @RequestMapping("/listProduct.do")
+   @RequestMapping(value = "listProduct")
    public String listProduct(@ModelAttribute("search") Search search, Model model, ServletRequest request,
 		   @RequestParam("menu") String menu
 		   ) throws Exception{
@@ -164,7 +165,7 @@ public class ProductController {
 	   //request.getAttribute("menu");
 
 	   
-	   System.out.println("/listProduct.do");
+	   System.out.println("/listProduct");
 	   
 	   if(search.getCurrentPage() == 0) {
 		   search.setCurrentPage(1);
