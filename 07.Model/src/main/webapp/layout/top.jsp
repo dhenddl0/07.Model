@@ -30,13 +30,13 @@
 	        <tr> 
 	          <td width="115">
 		          <%	if(user == null) { %>
-		              <a href="/user/loginView.jsp" target="rightFrame">login</a>   
+		              <a href="/user/login" target="rightFrame">login</a>   
 		          <%}%>        
 	          </td>
 	          <td width="14">&nbsp;</td>
 	          <td width="56">
 		          <% if(user != null) {  %>
-		            	<a href="/logout.do" target="_parent">logout</a>  
+		            	<a href="/user/logout" target="_parent">logout</a>  
 		           <% } %>
 	          </td>
 	        </tr>

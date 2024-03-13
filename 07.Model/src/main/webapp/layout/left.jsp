@@ -36,14 +36,14 @@ function history(){
 		<% 	if(vo != null){ %>
 		<tr>
 			<td class="Depth03">
-				<a href="/getUser.do?userId=<%=vo.getUserId() %>" target="rightFrame">개인정보조회</a>
+				<a href="/user/getUser?userId=<%=vo.getUserId() %>" target="rightFrame">개인정보조회</a>
 			</td>
 		</tr>
 		<%	}  %>
 		<% if(role.equals("admin")){%>
 		<tr>
 			<td class="Depth03" >
-				<a href="/listUser.do" target="rightFrame">회원정보조회</a>
+				<a href="/user/listUser" target="rightFrame">회원정보조회</a>
 			</td>
 		</tr>
 		<% } %>
